@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --bg-dark: #230C33;
-  --purple-dark: #592E83;
-  --purple-mid: #9984D4;
-  --purple-light: #CAA8F5;
-  --accent: #B27C66;
-  --text-main: #f4eef9;
-  --text-muted: #d7cfe3;
-  --card-bg: rgba(255, 255, 255, 0.08);
+  --bg-dark: #20191A;
+  --purple-dark: #55343A;
+  --purple-mid: #A65F55;
+  --purple-light: #E8B6A3;
+  --accent: #C98269;
+  --text-main: #F7F0EA;
+  --text-muted: #D8C9C0;
+  --card-bg: rgba(255, 237, 226, 0.07);
   --radius: 18px;
 }
 
@@ -22,6 +22,12 @@ body {
   font-family: 'Inter', sans-serif;
   background: var(--bg-dark);
   color: var(--text-main);
+}
+
+.home-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ================= NAV ================= */
@@ -62,26 +68,33 @@ nav a:hover::after {
 
 /* ================= HERO ================= */
 .hero {
-  min-height: 85vh;
-  padding: 0 70px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex: 1;
+  min-height: 62vh;
+  padding: 36px 70px 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  align-items: center;
+  column-gap: 56px;
+  row-gap: 28px;
   background:
-    radial-gradient(circle at top left, #CAA8F5 0%, transparent 40%),
-    linear-gradient(140deg, #592E83, #230C33 70%);
+    radial-gradient(circle at top left, #D49A83 0%, transparent 40%),
+    linear-gradient(140deg, #55343A, #20191A 70%);
+}
+
+.hero-copy {
+  max-width: 720px;
 }
 
 .hero h1 {
   font-size: 4.2rem;
   font-weight: 800;
-  max-width: 900px;
   line-height: 1.1;
 }
 
 .hero span {
   background: linear-gradient(90deg, var(--purple-light), var(--accent));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -90,6 +103,72 @@ nav a:hover::after {
   max-width: 520px;
   font-size: 1.1rem;
   color: var(--text-muted);
+}
+
+.hero-photo {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  justify-self: center;
+  width: min(100%, 390px);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 30%;
+  border: 5px solid rgba(232, 182, 163, 0.7);
+  border-radius: 48% 48% 22px 22px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35), 0 0 45px rgba(232, 182, 163, 0.2);
+}
+
+/* ================= CONTACT ================= */
+.contact-section {
+  grid-column: 1;
+  display: flex;
+  justify-content:flex-start;
+  padding: 12px 0 72px;
+}
+
+.contact-card {
+  width: min(100%, 780px);
+  padding: 30px;
+  text-align: center;
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 237, 226, 0.14);
+  border-radius: var(--radius);
+}
+
+.contact-card h2 {
+  margin-bottom: 8px;
+  color: var(--purple-light);
+}
+
+.contact-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px 36px;
+  margin-top: 24px;
+}
+
+.contact-details p {
+  display: grid;
+  gap: 6px;
+}
+
+.contact-details span {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.contact-details a {
+  color: var(--accent);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.contact-details a:hover {
+  color: var(--purple-light);
 }
 
 /* ================= SECTIONS ================= */
@@ -114,6 +193,12 @@ nav a:hover::after {
   bottom: -14px;
   left: 0;
   border-radius: 4px;
+}
+
+.projects-intro {
+  margin: -30px 0 34px;
+  color: var(--text-muted);
+  line-height: 1.6;
 }
 
 /* ================= CARDS ================= */
@@ -171,11 +256,19 @@ footer {
   }
 
   .hero {
-    padding: 0 30px;
+    grid-template-columns: 1fr;
+    gap: 38px;
+    padding: 70px 30px;
   }
 
   .hero h1 {
     font-size: 2.8rem;
+  }
+
+  .hero-photo {
+    grid-column: 1;
+    grid-row: auto;
+    width: min(80%, 340px);
   }
 
   .section {
@@ -187,15 +280,15 @@ footer {
 .timeline-container {
   position: relative;
   display: flex;
-  gap: 140px;
-  padding: 120px 0 80px;
-  overflow-x: auto;
+  gap: 24px;
+  padding: 24px 0 52px;
+  overflow: visible;
 }
 
 /* Horizontal line */
 .timeline-line {
   position: absolute;
-  top: 60%;
+  top: 290px;
   left: 0;
   width: 100%;
   height: 4px;
@@ -206,35 +299,37 @@ footer {
 /* Timeline node */
 .timeline-node {
   position: relative;
-  min-width: 260px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex: 1 1 0;
+  min-width: 0;
+  display: grid;
+  grid-template-rows: 220px 96px 32px;
+  justify-items: center;
   z-index: 2;
 }
 
 /* Card ABOVE the line */
 .timeline-card {
+  width: 100%;
+  height: 220px;
   background: var(--card-bg);
   padding: 26px;
   border-radius: var(--radius);
   border: 1px solid rgba(255,255,255,0.15);
   backdrop-filter: blur(12px);
   text-align: center;
-  margin-bottom: 90px; /* space to the line */
-  transform: translateY(-40px);
+  margin: 0;
+  transform: none;
   transition: transform 0.35s ease, border-color 0.35s ease;
 }
 
 .timeline-card:hover {
-  transform: translateY(-52px);
+  transform: translateY(-6px);
   border-color: var(--purple-light);
 }
 
-/* DOT — LOCKED TO THE LINE */
 .timeline-dot {
   position: absolute;
-  top: 60%;               /* EXACT same value as .timeline-line */
+  top: 268px;
   width: 14px;
   height: 14px;
   background: var(--purple-mid);
@@ -244,12 +339,48 @@ footer {
   z-index: 3;
 }
 
-/* Year BELOW the line */
 .timeline-year {
-  margin-top: 34px;
+  grid-row: 3;
+  align-self: start;
+  margin-top: 0;
   font-size: 1.05rem;
   font-weight: 600;
   color: var(--accent);
+}
+
+@media (max-width: 1000px) {
+  .timeline-container {
+    flex-direction: column;
+    gap: 28px;
+    padding: 0 0 0 38px;
+  }
+
+  .timeline-line {
+    top: 0;
+    bottom: 0;
+    left: 7px;
+    width: 4px;
+    height: auto;
+  }
+
+  .timeline-node {
+    display: block;
+    flex: none;
+    min-width: 0;
+  }
+
+  .timeline-card {
+    height: auto;
+  }
+
+  .timeline-dot {
+    top: 20px;
+    left: -36px;
+  }
+
+  .timeline-year {
+    margin-top: 12px;
+  }
 }
 
 /* ---------- CREDENTIALS PAGE ---------- */
@@ -278,7 +409,7 @@ footer {
   background: linear-gradient(
     120deg,
     transparent,
-    rgba(202, 168, 245, 0.15),
+    rgba(232, 182, 163, 0.15),
     transparent
   );
   opacity: 0;
