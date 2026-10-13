@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --bg-dark: #230C33;
+  --purple-dark: #592E83;
+  --purple-mid: #9984D4;
+  --purple-light: #CAA8F5;
+  --accent: #B27C66;
+  --text-main: #f4eef9;
+  --text-muted: #d7cfe3;
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --radius: 18px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-main);
+}
+
+/* ================= NAV ================= */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 26px 70px;
+}
+
+nav h2 {
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+nav a {
+  margin-left: 34px;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-weight: 500;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  left: 0;
+  bottom: -6px;
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* ================= HERO ================= */
+.hero {
+  min-height: 85vh;
+  padding: 0 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background:
+    radial-gradient(circle at top left, #CAA8F5 0%, transparent 40%),
+    linear-gradient(140deg, #592E83, #230C33 70%);
+}
+
+.hero h1 {
+  font-size: 4.2rem;
+  font-weight: 800;
+  max-width: 900px;
+  line-height: 1.1;
+}
+
+.hero span {
+  background: linear-gradient(90deg, var(--purple-light), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  margin-top: 26px;
+  max-width: 520px;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+/* ================= SECTIONS ================= */
+.section {
+  padding: 100px 70px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section-title {
+  font-size: 2.6rem;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--purple-light));
+  position: absolute;
+  bottom: -14px;
+  left: 0;
+  border-radius: 4px;
+}
+
+/* ================= CARDS ================= */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 34px;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 36px;
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: all 0.35s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  border-color: var(--purple-light);
+}
+
+.card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.card span {
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.card p {
+  margin-top: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ================= FOOTER ================= */
+footer {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  nav {
+    padding: 20px 30px;
+  }
+
+  .hero {
+    padding: 0 30px;
+  }
+
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+
+  .section {
+    padding: 70px 30px;
+  }
+}
+
+/* ---------- TIMELINE ---------- */
+.timeline-container {
+  position: relative;
+  display: flex;
+  gap: 140px;
+  padding: 120px 0 80px;
+  overflow-x: auto;
+}
+
+/* Horizontal line */
+.timeline-line {
+  position: absolute;
+  top: 60%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--purple-light));
+  z-index: 1;
+}
+
+/* Timeline node */
+.timeline-node {
+  position: relative;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+/* Card ABOVE the line */
+.timeline-card {
+  background: var(--card-bg);
+  padding: 26px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  text-align: center;
+  margin-bottom: 90px; /* space to the line */
+  transform: translateY(-40px);
+  transition: transform 0.35s ease, border-color 0.35s ease;
+}
+
+.timeline-card:hover {
+  transform: translateY(-52px);
+  border-color: var(--purple-light);
+}
+
+/* DOT — LOCKED TO THE LINE */
+.timeline-dot {
+  position: absolute;
+  top: 60%;               /* EXACT same value as .timeline-line */
+  width: 14px;
+  height: 14px;
+  background: var(--purple-mid);
+  border-radius: 50%;
+  border: 3px solid var(--bg-dark);
+  transform: translateY(-50%);
+  z-index: 3;
+}
+
+/* Year BELOW the line */
+.timeline-year {
+  margin-top: 34px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* ---------- CREDENTIALS PAGE ---------- */
+
+.credentials-group {
+  margin-bottom: 100px;
+}
+
+.subheading {
+  font-size: 1.6rem;
+  margin-bottom: 30px;
+  color: var(--purple-light);
+  letter-spacing: 0.5px;
+}
+
+/* Glow variation for certificates */
+.glow-card {
+  position: relative;
+}
+
+.glow-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(202, 168, 245, 0.15),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.glow-card:hover::before {
+  opacity: 1;
+}
+
+/* Project cards */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Project link button */
+.project-link {
+  margin-top: 20px;
+  align-self: flex-start;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--accent);
+  position: relative;
+}
+
+.project-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--purple-light));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.project-link:hover::after {
+  transform: scaleX(1);
+}
